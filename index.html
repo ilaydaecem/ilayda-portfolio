@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İlayda Öztürk — Computer Engineer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            terminal: {
+              bg:      '#0d1117',
+              surface: '#161b22',
+              border:  '#30363d',
+              green:   '#3fb950',
+              cyan:    '#79c0ff',
+              purple:  '#d2a8ff',
+              orange:  '#ffa657',
+              red:     '#ff7b72',
+              muted:   '#8b949e',
+              text:    '#c9d1d9',
+            }
+          },
+          fontFamily: {
+            mono: ['"JetBrains Mono"', '"Fira Code"', 'Menlo', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-terminal-bg text-terminal-text font-mono antialiased">
+
+  <!-- ── NAV ── -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+      <span class="text-terminal-green font-bold tracking-widest text-sm select-none">~/ilayda</span>
+      <ul class="hidden md:flex gap-6 text-xs text-terminal-muted">
+        <li><a href="#about"      class="nav-link hover:text-terminal-cyan transition-colors">about</a></li>
+        <li><a href="#experience" class="nav-link hover:text-terminal-cyan transition-colors">experience</a></li>
+        <li><a href="#projects"   class="nav-link hover:text-terminal-cyan transition-colors">projects</a></li>
+        <li><a href="#skills"     class="nav-link hover:text-terminal-cyan transition-colors">skills</a></li>
+        <li><a href="#education"  class="nav-link hover:text-terminal-cyan transition-colors">education</a></li>
+        <li><a href="#contact"    class="nav-link hover:text-terminal-cyan transition-colors">contact</a></li>
+      </ul>
+      <button id="menu-btn" class="md:hidden text-terminal-muted hover:text-terminal-cyan">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-terminal-surface border-t border-terminal-border px-6 py-4">
+      <ul class="flex flex-col gap-4 text-sm text-terminal-muted">
+        <li><a href="#about"      class="hover:text-terminal-cyan" onclick="closeMobileMenu()">about</a></li>
+        <li><a href="#experience" class="hover:text-terminal-cyan" onclick="closeMobileMenu()">experience</a></li>
+        <li><a href="#projects"   class="hover:text-terminal-cyan" onclick="closeMobileMenu()">projects</a></li>
+        <li><a href="#skills"     class="hover:text-terminal-cyan" onclick="closeMobileMenu()">skills</a></li>
+        <li><a href="#education"  class="hover:text-terminal-cyan" onclick="closeMobileMenu()">education</a></li>
+        <li><a href="#contact"    class="hover:text-terminal-cyan" onclick="closeMobileMenu()">contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero" class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+    <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none"></div>
+    <div class="relative z-10 text-center max-w-2xl w-full">
+      <div class="inline-flex items-center gap-2 mb-0 px-4 py-2 bg-terminal-surface border border-terminal-border rounded-t-lg w-full">
+        <span class="w-3 h-3 rounded-full bg-terminal-red"></span>
+        <span class="w-3 h-3 rounded-full bg-terminal-orange"></span>
+        <span class="w-3 h-3 rounded-full bg-terminal-green"></span>
+        <span class="ml-4 text-xs text-terminal-muted flex-1 text-center">bash — ~/portfolio</span>
+      </div>
+      <div class="bg-terminal-surface border border-t-0 border-terminal-border rounded-b-lg p-8 text-left">
+        <p class="text-terminal-muted text-sm mb-1">
+          <span class="text-terminal-green">ilayda</span><span class="text-terminal-muted">@</span><span class="text-terminal-cyan">local</span><span class="text-white">:~$</span> whoami
+        </p>
+        <h1 id="typed-name" class="text-4xl md:text-5xl font-bold text-terminal-green mt-4 mb-2 tracking-tight"></h1>
+        <p class="text-terminal-cyan text-lg font-medium mt-1">
+          <span class="text-terminal-muted">//</span> Computer Engineer
+        </p>
+        <p class="text-terminal-muted text-sm mt-6 leading-relaxed" id="typed-tagline"></p>
+        <p class="text-terminal-green text-sm mt-6 animate-pulse">▋</p>
+      </div>
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#projects" class="px-6 py-3 text-sm rounded border border-terminal-green text-terminal-green hover:bg-terminal-green hover:text-terminal-bg transition-all duration-200">
+          ./view-projects
+        </a>
+        <a href="#contact" class="px-6 py-3 text-sm rounded border border-terminal-border text-terminal-muted hover:border-terminal-cyan hover:text-terminal-cyan transition-all duration-200">
+          ./get-in-touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-heading text-xs text-terminal-muted uppercase tracking-widest mb-12 flex items-center gap-4">
+        <span class="text-terminal-purple">##</span> about
+        <span class="flex-1 h-px bg-terminal-border"></span>
+      </h2>
+      <div class="grid md:grid-cols-5 gap-12 items-start">
+        <div class="md:col-span-3 space-y-4 text-terminal-text text-sm leading-7">
+          <p>
+            Computer Engineering graduate from <span class="text-terminal-cyan">Suleyman Demirel University</span>
+            (MUDEK / Washington Accord accredited), with an Erasmus exchange year at
+            <span class="text-terminal-cyan">Transilvania University of Brasov</span>, Romania.
+          </p>
+          <p>
+            I build full-stack systems with a <span class="text-terminal-orange">backend focus</span> — RESTful APIs,
+            containerised deployments, and data-driven tooling using
+            <span class="text-terminal-orange">Java, Spring Boot, and PostgreSQL</span>.
+            Two internship stints at Volthread Technology sharpened my skills in Agile and Scrum delivery
+            and production-grade web development with React.
+          </p>
+          <p>
+            I gravitate toward tooling that surfaces system health: monitoring dashboards, log parsers, and
+            analysis pipelines that give engineers clear signal. I'm comfortable in a
+            <span class="text-terminal-green">Linux shell</span> and reach for Docker Compose to make
+            entire stacks reproducible with a single command.
+          </p>
+          <p class="text-terminal-muted">
+            Currently exploring distributed systems patterns and cloud-native architectures.
+          </p>
+        </div>
+        <div class="md:col-span-2 space-y-3">
+          <div class="stat-card p-4 bg-terminal-surface border border-terminal-border rounded-lg">
+            <p class="text-terminal-muted text-xs mb-1">focus</p>
+            <p class="text-terminal-cyan text-sm font-medium">Full Stack · Backend &amp; APIs</p>
+          </div>
+          <div class="stat-card p-4 bg-terminal-surface border border-terminal-border rounded-lg">
+            <p class="text-terminal-muted text-xs mb-1">languages</p>
+            <p class="text-terminal-orange text-sm font-medium">Java · C++ · SQL · Python</p>
+          </div>
+          <div class="stat-card p-4 bg-terminal-surface border border-terminal-border rounded-lg">
+            <p class="text-terminal-muted text-xs mb-1">devops</p>
+            <p class="text-terminal-green text-sm font-medium">Docker · Docker Compose · Git</p>
+          </div>
+          <div class="stat-card p-4 bg-terminal-surface border border-terminal-border rounded-lg">
+            <p class="text-terminal-muted text-xs mb-1">human languages</p>
+            <p class="text-terminal-purple text-sm font-medium">Turkish (Native) · English (Advanced)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EXPERIENCE ── -->
+  <section id="experience" class="py-24 px-6 bg-terminal-surface/30">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-heading text-xs text-terminal-muted uppercase tracking-widest mb-12 flex items-center gap-4">
+        <span class="text-terminal-purple">##</span> experience
+        <span class="flex-1 h-px bg-terminal-border"></span>
+      </h2>
+
+      <div class="relative pl-6 space-y-10 before:absolute before:left-0 before:top-2 before:bottom-2 before:w-px before:bg-terminal-border">
+
+        <!-- Intern 2023 -->
+        <div class="exp-card relative">
+          <span class="absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-terminal-green border-2 border-terminal-bg"></span>
+          <div class="bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-green transition-colors duration-300">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+              <div>
+                <h3 class="text-terminal-green font-bold text-sm">Full Stack Developer Intern</h3>
+                <p class="text-terminal-cyan text-xs mt-0.5">Volthread Technology</p>
+              </div>
+              <span class="text-terminal-muted text-xs px-3 py-1 bg-terminal-bg border border-terminal-border rounded self-start sm:self-auto">
+                Jul 2023 — Aug 2023
+              </span>
+            </div>
+            <ul class="space-y-2 text-terminal-muted text-xs leading-6">
+              <li class="flex gap-2"><span class="text-terminal-green mt-0.5">›</span>Designed and developed the company's official website using <span class="text-terminal-orange">React</span> and <span class="text-terminal-orange">Java Spring Boot</span>.</li>
+              <li class="flex gap-2"><span class="text-terminal-green mt-0.5">›</span>Integrated advanced features to enhance user engagement and interaction.</li>
+              <li class="flex gap-2"><span class="text-terminal-green mt-0.5">›</span>Collaborated using <span class="text-terminal-cyan">Scrum</span> methodology through regular sprints and retrospectives.</li>
+              <li class="flex gap-2"><span class="text-terminal-green mt-0.5">›</span>Conducted unit and integration tests to ensure performance and reliability.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-terminal-border">
+              <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React</span><span class="tag">Scrum</span><span class="tag">Testing</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Intern 2022 -->
+        <div class="exp-card relative">
+          <span class="absolute -left-[25px] top-1 w-3 h-3 rounded-full bg-terminal-cyan border-2 border-terminal-bg"></span>
+          <div class="bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-cyan transition-colors duration-300">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+              <div>
+                <h3 class="text-terminal-cyan font-bold text-sm">Full Stack Developer Intern</h3>
+                <p class="text-terminal-cyan text-xs mt-0.5 opacity-70">Volthread Technology</p>
+              </div>
+              <span class="text-terminal-muted text-xs px-3 py-1 bg-terminal-bg border border-terminal-border rounded self-start sm:self-auto">
+                Jul 2022 — Aug 2022
+              </span>
+            </div>
+            <ul class="space-y-2 text-terminal-muted text-xs leading-6">
+              <li class="flex gap-2"><span class="text-terminal-cyan mt-0.5">›</span>Participated in Java training focused on <span class="text-terminal-orange">object-oriented programming</span> and backend development.</li>
+              <li class="flex gap-2"><span class="text-terminal-cyan mt-0.5">›</span>Designed and implemented <span class="text-terminal-orange">RESTful APIs</span> with Java.</li>
+              <li class="flex gap-2"><span class="text-terminal-cyan mt-0.5">›</span>Managed and optimised data using <span class="text-terminal-orange">MongoDB</span> databases.</li>
+              <li class="flex gap-2"><span class="text-terminal-cyan mt-0.5">›</span>Collaborated with team members using <span class="text-terminal-cyan">Agile</span> methodologies.</li>
+            </ul>
+            <div class="flex flex-wrap gap-2 mt-4 pt-4 border-t border-terminal-border">
+              <span class="tag">Java</span><span class="tag">REST APIs</span><span class="tag">MongoDB</span><span class="tag">Agile</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROJECTS ── -->
+  <section id="projects" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-heading text-xs text-terminal-muted uppercase tracking-widest mb-12 flex items-center gap-4">
+        <span class="text-terminal-purple">##</span> projects
+        <span class="flex-1 h-px bg-terminal-border"></span>
+      </h2>
+
+      <!-- Featured: 3 projects with GitHub links -->
+      <div class="grid md:grid-cols-2 gap-6 mb-6">
+
+        <!-- Service Monitor -->
+        <article class="project-card group bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-cyan transition-all duration-300 md:col-span-2 lg:col-span-1">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">📡</span>
+              <span class="text-xs px-2 py-1 rounded bg-terminal-green/10 text-terminal-green border border-terminal-green/30">featured</span>
+            </div>
+            <a href="https://github.com/ilaydaecem/service-monitor" target="_blank" rel="noopener noreferrer"
+               class="text-terminal-muted hover:text-terminal-cyan transition-colors opacity-0 group-hover:opacity-100" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+          <!-- screenshot -->
+          <div class="rounded-md overflow-hidden border border-terminal-border mb-4 -mx-1">
+            <img src="https://raw.githubusercontent.com/ilaydaecem/service-monitor/main/screenshot.png"
+                 alt="Service Monitor dashboard screenshot"
+                 loading="lazy"
+                 data-lb-src="https://raw.githubusercontent.com/ilaydaecem/service-monitor/main/screenshot.png"
+                 data-lb-alt="Service Monitor — dashboard"
+                 class="w-full h-44 object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+          </div>
+          <h3 class="text-terminal-cyan font-bold text-base mb-2">Service Monitor</h3>
+          <p class="text-terminal-muted text-xs leading-6 mb-4">
+            Web service availability monitoring tool with automated health checks, persistent storage, and a fully containerised deployment.
+          </p>
+          <div class="space-y-1.5 mb-5 text-xs">
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-green">+</span>Polls registered web services every <span class="text-terminal-orange font-medium">30 seconds</span> for availability</div>
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-green">+</span>Persists results in <span class="text-terminal-orange font-medium">PostgreSQL</span> via Spring Data JPA — survives restarts</div>
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-green">+</span>One-command stack with <span class="text-terminal-orange font-medium">Docker Compose</span>: app + PostgreSQL + Adminer</div>
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-green">+</span>Dashboard for historical uptime and failure timestamps</div>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-terminal-border">
+            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">PostgreSQL</span><span class="tag">Spring Data JPA</span><span class="tag">Docker Compose</span>
+          </div>
+        </article>
+
+        <!-- Log Analyzer -->
+        <article class="project-card group bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-orange transition-all duration-300">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">📋</span>
+              <span class="text-xs px-2 py-1 rounded bg-terminal-orange/10 text-terminal-orange border border-terminal-orange/30">featured</span>
+            </div>
+            <a href="https://github.com/ilaydaecem/log-analyzer" target="_blank" rel="noopener noreferrer"
+               class="text-terminal-muted hover:text-terminal-orange transition-colors opacity-0 group-hover:opacity-100" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+          <!-- screenshot -->
+          <div class="rounded-md overflow-hidden border border-terminal-border mb-4 -mx-1">
+            <img src="https://raw.githubusercontent.com/ilaydaecem/log-analyzer/main/Screenshot.png"
+                 alt="Log Analyzer dashboard screenshot"
+                 loading="lazy"
+                 data-lb-src="https://raw.githubusercontent.com/ilaydaecem/log-analyzer/main/Screenshot.png"
+                 data-lb-alt="Log Analyzer — error dashboard"
+                 class="w-full h-44 object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+          </div>
+          <h3 class="text-terminal-orange font-bold text-base mb-2">Log Analyzer</h3>
+          <p class="text-terminal-muted text-xs leading-6 mb-4">
+            Log file analysis tool with a dark-themed dashboard — upload any log file and instantly surface errors, warnings, and trends.
+          </p>
+          <div class="space-y-1.5 mb-5 text-xs">
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-orange">+</span>Parses <span class="text-terminal-red font-medium">ERROR</span>, <span class="text-terminal-orange font-medium">WARNING</span>, and INFO messages from uploaded log files</div>
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-orange">+</span>Hourly error distribution chart for time-based analysis</div>
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-orange">+</span>Lists most recent errors with context on a dark-themed dashboard</div>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-terminal-border">
+            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Thymeleaf</span>
+          </div>
+        </article>
+
+        <!-- Image Analyzer -->
+        <article class="project-card group bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-purple transition-all duration-300">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="text-xl">🔬</span>
+              <span class="text-xs px-2 py-1 rounded bg-terminal-purple/10 text-terminal-purple border border-terminal-purple/30">featured</span>
+            </div>
+            <a href="https://github.com/ilaydaecem/image-analyzer" target="_blank" rel="noopener noreferrer"
+               class="text-terminal-muted hover:text-terminal-purple transition-colors opacity-0 group-hover:opacity-100" aria-label="GitHub">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+          </div>
+          <!-- screenshots (two side by side) -->
+          <div class="grid grid-cols-2 gap-2 rounded-md overflow-hidden mb-4 -mx-1">
+            <div class="overflow-hidden rounded-md border border-terminal-border">
+              <img src="https://raw.githubusercontent.com/ilaydaecem/image-analyzer/main/screenshot.png"
+                   alt="Image Analyzer — upload view"
+                   loading="lazy"
+                   data-lb-src="https://raw.githubusercontent.com/ilaydaecem/image-analyzer/main/screenshot.png"
+                   data-lb-alt="Image Analyzer — upload view"
+                   class="w-full h-36 object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+            </div>
+            <div class="overflow-hidden rounded-md border border-terminal-border">
+              <img src="https://raw.githubusercontent.com/ilaydaecem/image-analyzer/main/screenshot2.png"
+                   alt="Image Analyzer — results view"
+                   loading="lazy"
+                   data-lb-src="https://raw.githubusercontent.com/ilaydaecem/image-analyzer/main/screenshot2.png"
+                   data-lb-alt="Image Analyzer — results view"
+                   class="w-full h-36 object-cover object-top transition-transform duration-500 group-hover:scale-105" />
+            </div>
+          </div>
+          <h3 class="text-terminal-purple font-bold text-base mb-2">Image Analyzer</h3>
+          <p class="text-terminal-muted text-xs leading-6 mb-4">
+            Browser-based image analysis tool that extracts technical metadata from any uploaded image file instantly.
+          </p>
+          <div class="space-y-1.5 mb-5 text-xs">
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-purple">+</span>Detects format, dimensions, file size, <span class="text-terminal-orange font-medium">dominant colour</span>, and brightness level</div>
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-purple">+</span>Accepts JPG, PNG, GIF, and BMP via browser upload</div>
+            <div class="flex gap-2 text-terminal-muted"><span class="text-terminal-purple">+</span>Results rendered instantly with live colour preview swatch</div>
+          </div>
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-terminal-border">
+            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">Thymeleaf</span>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Additional projects: compact row -->
+      <p class="text-terminal-muted text-xs uppercase tracking-widest mb-4">other projects</p>
+      <div class="grid sm:grid-cols-3 gap-4">
+
+        <div class="mini-card bg-terminal-surface border border-terminal-border rounded-lg p-4 hover:border-terminal-green transition-colors">
+          <p class="text-terminal-green text-xs font-bold mb-1">BeReal Clone</p>
+          <p class="text-terminal-muted text-xs leading-5">Android social app with user profiles, photo sharing, and real-time updates via <span class="text-terminal-orange">Firebase</span> Realtime Database.</p>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="tag">Android</span><span class="tag">Java</span><span class="tag">Firebase</span>
+          </div>
+        </div>
+
+        <div class="mini-card bg-terminal-surface border border-terminal-border rounded-lg p-4 hover:border-terminal-cyan transition-colors">
+          <p class="text-terminal-cyan text-xs font-bold mb-1">Location Directory Site</p>
+          <p class="text-terminal-muted text-xs leading-5">Responsive site with nearby locations, opening hours, ratings, and user reviews.</p>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="mini-card bg-terminal-surface border border-terminal-border rounded-lg p-4 hover:border-terminal-orange transition-colors">
+          <p class="text-terminal-orange text-xs font-bold mb-1">Appointment System</p>
+          <p class="text-terminal-muted text-xs leading-5">Hair salon booking website with scheduling and management features, built with modern web technologies.</p>
+          <div class="flex flex-wrap gap-1.5 mt-3">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills" class="py-24 px-6 bg-terminal-surface/30">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-heading text-xs text-terminal-muted uppercase tracking-widest mb-12 flex items-center gap-4">
+        <span class="text-terminal-purple">##</span> skills
+        <span class="flex-1 h-px bg-terminal-border"></span>
+      </h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+        <div class="skill-group p-5 bg-terminal-surface border border-terminal-border rounded-lg hover:border-terminal-orange transition-colors">
+          <p class="text-terminal-orange text-xs font-bold uppercase tracking-widest mb-4">Languages</p>
+          <ul class="space-y-2 text-terminal-muted text-xs">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8.85 17.1s-1.27.74.9.99c2.63.3 3.97.26 6.87-.3 0 0 .76.48 1.83.89-6.5 2.79-14.7-.16-9.6-1.58z" fill="#E76F00"/>
+                <path d="M8.15 14.67s-1.43.06 1.06 1.32c2.8 1.43 4.9 1.55 8.63.84 0 0 .53.54 1.36.83-7.64 2.23-16.15.2-11.05-3z" fill="#E76F00"/>
+                <path d="M13.55 9.3c1.56 1.8-.41 3.41-.41 3.41s3.95-2.04 2.14-4.58c-1.7-2.38-3-3.56 4.04-7.63 0 0-11.04 2.76-5.77 8.8z" fill="#E76F00"/>
+                <path d="M20.38 19.1s.94.78-1.04 1.38c-3.76 1.14-15.65.74-18.96 0-1.19-.26.04-.98 1.88-1.28.57-.1.9-.12.9-.12-1.03-.72-6.66 1.43-2.86 2.04 10.38 1.68 18.92-.76 20.08-2.02z" fill="#E76F00"/>
+                <path d="M9.5 12.1s-4.73 1.13-1.67 1.54c1.28.17 3.83.13 6.2-.07 1.94-.16 3.89-.52 3.89-.52s-.68.29-1.18.63c-4.75 1.25-13.93.67-11.3-.6 2.24-1.09 4.06-.98 4.06-.98z" fill="#E76F00"/>
+                <path d="M17.77 16.43c4.83-2.51 2.6-4.92 1.04-4.6-.38.08-.55.16-.55.16s.14-.22.41-.32c3.06-1.08 5.41 3.18-1 4.87 0 0 .07-.07.1-.11z" fill="#E76F00"/>
+                <path d="M15.05 0s2.7 2.71-2.56 6.87c-4.22 3.33-.96 5.23 0 7.4-2.46-2.22-4.26-4.18-3.05-6 1.77-2.65 6.66-3.94 5.61-8.27z" fill="#E76F00"/>
+                <path d="M10.05 23.98c4.63.3 11.74-.17 11.92-2.38 0 0-.32.84-3.83 1.5-3.97.75-8.87.66-11.78.18 0 0 .6.49 3.69.7z" fill="#E76F00"/>
+              </svg>
+              <span class="text-[#E76F00] font-semibold" style="text-shadow:0 0 8px #E76F0066">Java</span>
+            </li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>C / C++</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>SQL</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>JavaScript</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>Bash</li>
+          </ul>
+        </div>
+
+        <div class="skill-group p-5 bg-terminal-surface border border-terminal-border rounded-lg hover:border-terminal-cyan transition-colors">
+          <p class="text-terminal-cyan text-xs font-bold uppercase tracking-widest mb-4">Frameworks</p>
+          <ul class="space-y-2 text-terminal-muted text-xs">
+            <li class="flex items-center gap-2">
+              <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.205 16.392c-2.469 3.289-7.741 2.47-11.05 2.529-3.826.068-7.765.608-8.719 1.088C.457 19.9 3.053 16.81 6.11 15.7c1.903-.695 4.347-.99 7.028-1.24 3.574-.322 6.635-1.23 7.067-5.294.232 2.18-.233 4.053-1.144 5.552C19.36 15.02 19.822 15.776 20.205 16.392zm-.012-5.367C19.4 8.34 16.59 6.362 14.1 4.5c-1.932-1.432-4.15-3.196-4.48-5.473-.008-.053-.013-.107-.019-.16C9.58-.71 9.56-.77 9.54-.83c-.02.06-.04.12-.06.18 0 .053-.006.107-.01.16C9.16 1.857 8.48 3.19 7.432 4.298 5.46 6.38 2.32 7.6.9 10.104c-2.14 3.792.27 8.424 5.074 9.456-1.158-1.145-1.6-2.97-1.2-4.72.56-2.447 2.374-4.2 4.63-5.1 2.46-.98 5.27-.928 7.874-1.4 2.84-.51 5.667-1.735 7.013-4.496-.437 2.42-1.73 4.556-4.098 5.78z" fill="#6DB33F"/>
+              </svg>
+              <span class="font-semibold" style="color:#6DB33F;text-shadow:0 0 8px #6DB33F55">Spring Boot</span>
+            </li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>Spring Data JPA</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>Thymeleaf</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>React</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>Node.js</li>
+          </ul>
+        </div>
+
+        <div class="skill-group p-5 bg-terminal-surface border border-terminal-border rounded-lg hover:border-terminal-purple transition-colors">
+          <p class="text-terminal-purple text-xs font-bold uppercase tracking-widest mb-4">Databases</p>
+          <ul class="space-y-2 text-terminal-muted text-xs">
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>PostgreSQL</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>MySQL</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>MongoDB</li>
+          </ul>
+        </div>
+
+        <div class="skill-group p-5 bg-terminal-surface border border-terminal-border rounded-lg hover:border-terminal-green transition-colors">
+          <p class="text-terminal-green text-xs font-bold uppercase tracking-widest mb-4">DevOps &amp; Tools</p>
+          <ul class="space-y-2 text-terminal-muted text-xs">
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>Docker</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>Docker Compose</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>Git / GitHub / GitLab</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>IntelliJ IDEA</li>
+            <li class="flex gap-2"><span class="text-terminal-green">›</span>Android Studio</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── EDUCATION ── -->
+  <section id="education" class="py-24 px-6">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-heading text-xs text-terminal-muted uppercase tracking-widest mb-12 flex items-center gap-4">
+        <span class="text-terminal-purple">##</span> education
+        <span class="flex-1 h-px bg-terminal-border"></span>
+      </h2>
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <div class="edu-card bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-green transition-colors duration-300">
+          <div class="flex items-start gap-3 mb-4">
+            <span class="text-2xl">🎓</span>
+            <div>
+              <h3 class="text-terminal-green font-bold text-sm leading-snug">Suleyman Demirel University</h3>
+              <p class="text-terminal-muted text-xs mt-1">Computer Engineering</p>
+            </div>
+          </div>
+          <div class="space-y-2 text-xs text-terminal-muted">
+            <div class="flex gap-2"><span class="text-terminal-green">›</span>Bachelor's Degree · 2020 – 2024</div>
+            <div class="flex gap-2"><span class="text-terminal-green">›</span>GPA: <span class="text-terminal-text">2.79</span></div>
+            <div class="flex gap-2"><span class="text-terminal-green">›</span>
+              Accredited by <span class="text-terminal-cyan">MUDEK</span>
+              <span class="text-terminal-muted">(Washington Accord)</span>
+            </div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-terminal-border">
+            <span class="text-xs px-2 py-1 rounded bg-terminal-green/10 text-terminal-green border border-terminal-green/30">Washington Accord</span>
+          </div>
+        </div>
+
+        <div class="edu-card bg-terminal-surface border border-terminal-border rounded-lg p-6 hover:border-terminal-cyan transition-colors duration-300">
+          <div class="flex items-start gap-3 mb-4">
+            <span class="text-2xl">✈️</span>
+            <div>
+              <h3 class="text-terminal-cyan font-bold text-sm leading-snug">Transilvania University of Brasov</h3>
+              <p class="text-terminal-muted text-xs mt-1">Faculty of Electrical Engineering &amp; Computer Science</p>
+            </div>
+          </div>
+          <div class="space-y-2 text-xs text-terminal-muted">
+            <div class="flex gap-2"><span class="text-terminal-cyan">›</span>Erasmus Exchange · 2021 – 2022</div>
+            <div class="flex gap-2"><span class="text-terminal-cyan">›</span>Romania <span class="text-terminal-muted">· Braşov</span></div>
+            <div class="flex gap-2"><span class="text-terminal-cyan">›</span>International academic exchange experience</div>
+          </div>
+          <div class="mt-4 pt-4 border-t border-terminal-border">
+            <span class="text-xs px-2 py-1 rounded bg-terminal-cyan/10 text-terminal-cyan border border-terminal-cyan/30">Erasmus+</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact" class="py-24 px-6 bg-terminal-surface/30">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-heading text-xs text-terminal-muted uppercase tracking-widest mb-12 flex items-center gap-4">
+        <span class="text-terminal-purple">##</span> contact
+        <span class="flex-1 h-px bg-terminal-border"></span>
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-10 items-start">
+
+        <!-- ── Form ── -->
+        <div class="bg-terminal-surface border border-terminal-border rounded-lg overflow-hidden">
+          <!-- window chrome -->
+          <div class="flex items-center gap-2 px-4 py-2.5 bg-terminal-bg border-b border-terminal-border">
+            <span class="w-3 h-3 rounded-full bg-terminal-red"></span>
+            <span class="w-3 h-3 rounded-full bg-terminal-orange"></span>
+            <span class="w-3 h-3 rounded-full bg-terminal-green"></span>
+            <span class="ml-3 text-xs text-terminal-muted">new-message.sh</span>
+          </div>
+          <form id="contact-form" class="p-6 space-y-5" novalidate>
+            <div>
+              <label class="form-label" for="cf-name">$ input --name</label>
+              <input id="cf-name" type="text" name="name" class="form-input"
+                     placeholder="Your full name" required autocomplete="name" />
+            </div>
+            <div>
+              <label class="form-label" for="cf-email">$ input --email</label>
+              <input id="cf-email" type="email" name="email" class="form-input"
+                     placeholder="your@email.com" required autocomplete="email" />
+            </div>
+            <div>
+              <label class="form-label" for="cf-msg">$ input --message</label>
+              <textarea id="cf-msg" name="message" rows="5" class="form-input"
+                        placeholder="Your message..." required></textarea>
+            </div>
+            <button type="submit" class="form-submit">./send-message</button>
+            <div id="form-success" class="hidden">
+              ✓ Message received — I'll respond within 48 hours.
+            </div>
+          </form>
+        </div>
+
+        <!-- ── Info + Links ── -->
+        <div class="space-y-6">
+          <div class="bg-terminal-surface border border-terminal-border rounded-lg p-6">
+            <p class="text-terminal-muted text-xs mb-3">
+              <span class="text-terminal-green">$</span> cat contact.txt
+            </p>
+            <p class="text-terminal-text text-sm leading-7">
+              Open to backend engineering roles, full-stack projects, and Erasmus-inspired international collaborations.
+            </p>
+            <p class="text-terminal-muted text-xs mt-3">
+              I respond within 48 hours.
+            </p>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <a href="https://github.com/ilaydaecem" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 px-5 py-3 bg-terminal-surface border border-terminal-border rounded-lg hover:border-terminal-cyan hover:text-terminal-cyan text-terminal-muted transition-all duration-200 text-sm">
+              <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              github.com/ilaydaecem
+            </a>
+            <a href="mailto:ilayda.oztrk@icloud.com"
+               class="flex items-center gap-3 px-5 py-3 bg-terminal-surface border border-terminal-border rounded-lg hover:border-terminal-green hover:text-terminal-green text-terminal-muted transition-all duration-200 text-sm">
+              <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+              ilayda.oztrk@icloud.com
+            </a>
+            <a href="https://www.linkedin.com/in/ilayda-%C3%B6zt%C3%BCrk-44bb81237" target="_blank" rel="noopener noreferrer"
+               class="flex items-center gap-3 px-5 py-3 bg-terminal-surface border border-terminal-border rounded-lg hover:border-terminal-cyan hover:text-terminal-cyan text-terminal-muted transition-all duration-200 text-sm">
+              <svg class="w-5 h-5 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              linkedin.com/in/ilayda-öztürk
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="py-8 px-6 border-t border-terminal-border text-center">
+    <p class="text-terminal-muted text-xs">
+      <span class="text-terminal-green">©</span> İlayda Öztürk — built with HTML5, Tailwind CSS &amp; vanilla JS
+      <span class="mx-2 text-terminal-border">|</span>
+      <span id="footer-time" class="text-terminal-muted"></span>
+    </p>
+  </footer>
+
+  <!-- ── LIGHTBOX OVERLAY ── -->
+  <div id="lb-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div id="lb-img-wrap">
+      <button id="lb-close" aria-label="Close image viewer">&#x2715;</button>
+      <img id="lb-img" src="" alt="" />
+      <p id="lb-caption"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
